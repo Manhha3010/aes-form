@@ -37,11 +37,12 @@ const FormEncrypt = (props) => {
   });
 
   const handleSubmit = async (values, formik) => {
+    const start = Date.now();
     let plaintext = values?.text;
     let password = values?.password;
     let keyLength = values?.keyLength;
     const cipher = await AES.encrypt(plaintext, password, keyLength);
-    const start = Date.now();
+    
     const end = Date.now();
     const result = {
       cipher,
