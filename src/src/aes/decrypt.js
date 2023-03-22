@@ -6,8 +6,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 async function getInput() {
-  // lấy thời gian khi bắt đầu chạy chương trình
-  const start = Date.now();
+
   // nhập cipher
   let cipher = await new Promise((resolve) => {
     rl.question("Enter cipher ", resolve);
@@ -22,6 +21,8 @@ async function getInput() {
   });
   // giải mã
   const run = async () => {
+  // lấy thời gian khi bắt đầu chạy chương trình
+    const start = Date.now();
     // gọi hàm giải mã
     const plaintext = await AES.decrypt(cipher, password, keyLength);
     // lấy thời gian khi kết thúc chương trình
@@ -32,7 +33,7 @@ async function getInput() {
       plaintext,
       password,
       keyLength,
-      time: (end - start) / 1000 + "s",
+      time: (end - start) / 1000000 + "ms",
     };
     fs.writeFile("decrypted.json", JSON.stringify(result), function (err) {
       if (err) throw err;

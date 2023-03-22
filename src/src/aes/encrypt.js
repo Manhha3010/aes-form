@@ -6,8 +6,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 async function getInput() {
-  // lấy thời gian khi bắt đầu chạy chương trình
-  const start = Date.now();
+
   // lựa chọn đọc từ file hay từ bàn phím
   const options = await new Promise((resolve) => {
     rl.question(
@@ -38,6 +37,8 @@ async function getInput() {
   });
   // mã hóa
   const run = async () => {
+    // lấy thời gian khi bắt đầu chạy chương trình
+    const start = Date.now();
     // gọi hàm mã hóa
     const cipher = await AES.encrypt(plaintext, password, keyLength);
     // lấy thời gian khi kết thúc chương trình
@@ -48,7 +49,7 @@ async function getInput() {
       plaintext,
       password,
       keyLength,
-      time: (end - start) / 1000 + "s",
+      time: (end - start) / 1000000 + "ms",
     };
 
     fs.writeFile("encrypted.json", JSON.stringify(result), function (err) {

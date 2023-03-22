@@ -35,7 +35,7 @@ const FormDecrypt = (props) => {
       .nullable()
       .required("keyLength is required")
       .max(3, "Số nhập vào không vượt quá 3 chữ số")
-      .matches(/(^128)|(^192)|(^256)$/, "Nhập vào độ dài không hợp lệ"),
+      .matches(/(^128)|(^192)|(^256)$/, "Độ dài khóa không hợp lệ"),
   });
 
   const handleSubmit = async (values, formik) => {
@@ -53,7 +53,7 @@ const FormDecrypt = (props) => {
       plaintext,
       password,
       keyLength,
-      time: (end - start) / 1000 + "s",
+      time: (end - start) / 1 + "ms",
     };
     setDecrptedData(result);
     formik.resetForm();
